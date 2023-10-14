@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# PROVIDE: netfs
+# REQUIRE: mountall
+
+$_rc_subr_loaded . /etc/rc.subr
+
+name="netfs"
+rcvar=$name
+start_cmd="netfs_start"
+stop_cmd="netfs_stop"
+
+netfs_start()
+{
+        mount -t tmpfs netfs /net && echo 'Starting netfs.'
+}
+
+netfs_stop()
+{
+        umount /net && echo 'Stopping netfs.'
+}
+
+load_rc_config $name
+run_rc_command "$1"

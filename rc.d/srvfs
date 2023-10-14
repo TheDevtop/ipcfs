@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# PROVIDE: srvfs
+# REQUIRE: mountall
+
+$_rc_subr_loaded . /etc/rc.subr
+
+name="srvfs"
+rcvar=$name
+start_cmd="srvfs_start"
+stop_cmd="srvfs_stop"
+
+srvfs_start()
+{
+        mount -t tmpfs srvfs /srv && echo 'Starting srvfs.'
+}
+
+srvfs_stop()
+{
+        umount /srv && echo 'Stopping srvfs.'
+}
+
+load_rc_config $name
+run_rc_command "$1"
