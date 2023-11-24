@@ -6,10 +6,7 @@ import (
 	"os"
 )
 
-const (
-	netFmt   = "/net/%s"
-	unixType = "unix"
-)
+const unixType = "unix"
 
 func RegisterNetwork(name string) (*net.UnixListener, error) {
 	var (
